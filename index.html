@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elwood Blues Construction LLC — Phoenix, AZ</title>
+  <meta name="description" content="Elwood Blues Construction delivers precision craftsmanship for the discerning homeowner in Phoenix, AZ. Remodeling, additions, new construction, and restoration.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/trust-bar.css">
+  <link rel="stylesheet" href="css/services.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/process.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/cta.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Sections -->
+  <div id="section-nav"></div>
+  <div id="section-hero"></div>
+  <div id="section-trust-bar"></div>
+  <div id="section-services"></div>
+  <div id="section-about"></div>
+  <div id="section-process"></div>
+  <div id="section-gallery"></div>
+  <div id="section-cta"></div>
+  <div id="section-contact"></div>
+  <div id="section-footer"></div>
+
+  <script>
+    const sections = [
+      { id: 'section-nav',       file: 'sections/nav.html' },
+      { id: 'section-hero',      file: 'sections/hero.html' },
+      { id: 'section-trust-bar', file: 'sections/trust-bar.html' },
+      { id: 'section-services',  file: 'sections/services.html' },
+      { id: 'section-about',     file: 'sections/about.html' },
+      { id: 'section-process',   file: 'sections/process.html' },
+      { id: 'section-gallery',   file: 'sections/gallery.html' },
+      { id: 'section-cta',       file: 'sections/cta.html' },
+      { id: 'section-contact',   file: 'sections/contact.html' },
+      { id: 'section-footer',    file: 'sections/footer.html' },
+    ];
+
+    Promise.all(
+      sections.map(({ id, file }) =>
+        fetch(file)
+          .then(res => res.text())
+          .then(html => { document.getElementById(id).innerHTML = html; })
+          .catch(() => console.warn('Could not load ' + file))
+      )
+    ).then(() => {
+      // Load site scripts
+      ['js/main.js', 'js/sidebar.js', 'js/gallery.js', 'js/forms.js'].forEach(src => {
+        const s = document.createElement('script');
+        s.src = src;
+        document.body.appendChild(s);
+      });
+
+      // ── Before / After Slider Init ──────────────────────────────────────
+      // Runs after ALL sections are injected into the DOM so [data-ba]
+      // elements are guaranteed to exist.
+      function initBA(wrap) {
+        var pct = 50;
+        var dragging = false;
+        var beforeEl = wrap.querySelector('.ba-before-img');
+        var divider  = wrap.querySelector('.ba-divider');
+
+        function setPosition(clientX) {
+          var rect = wrap.getBoundingClientRect();
+          var raw  = ((clientX - rect.left) / rect.width) * 100;
+          pct = Math.max(2, Math.min(98, raw));
+          beforeEl.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+          divider.style.left = pct + '%';
+        }
+
+        // Set initial 50 % position
+        setPosition(wrap.getBoundingClientRect().left + wrap.getBoundingClientRect().width * 0.5);
+
+        // Hint animation: slide left then right then back
+        divider.classList.add('hinting');
+        divider.addEventListener('animationend', function() {
+          divider.classList.remove('hinting');
+        }, { once: true });
+
+        // Mouse drag
+        divider.addEventListener('mousedown', function(e) {
+          dragging = true;
+          e.preventDefault();
+        });
+        document.addEventListener('mousemove', function(e) {
+          if (dragging) setPosition(e.clientX);
+        });
+        document.addEventListener('mouseup', function() { dragging = false; });
+
+        // Touch drag
+        divider.addEventListener('touchstart', function(e) {
+          dragging = true;
+          e.preventDefault();
+        }, { passive: false });
+        document.addEventListener('touchmove', function(e) {
+          if (dragging) {
+            setPosition(e.touches[0].clientX);
+            e.preventDefault();
+          }
+        }, { passive: false });
+        document.addEventListener('touchend', function() { dragging = false; });
+
+        // Tap anywhere on the card to jump divider
+        wrap.addEventListener('click', function(e) {
+          if (!dragging) setPosition(e.clientX);
+        });
+      }
+
+      document.querySelectorAll('[data-ba]').forEach(initBA);
+      // ────────────────────────────────────────────────────────────────────
+    });
+  </script>
+
+</body>
+</html>

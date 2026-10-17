@@ -1,0 +1,114 @@
+/* ================================
+   BASE — Reset, Variables, Shared
+   ================================ */
+
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+   :root {
+    --copper: #0220f4;
+    --copper-dark: #0118c0;
+    --copper-light: #3a52ff;
+    --charcoal: #0a0a0a;
+    --charcoal-mid: #111111;
+    --stone: #f0f0f0;
+    --stone-mid: #b0b0b0;
+    --off-white: #f5f5f5;
+    --text-muted: #7a7a7a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Montserrat", sans-serif;
+    background: var(--charcoal);
+    color: #000;
+    overflow-x: hidden;
+  }
+
+/* Shared section padding */
+section { padding: 7rem 3rem; }
+
+/* Shared eyebrow label */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--copper);
+}
+.section-eyebrow span {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+/* Shared section title */
+.section-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* Shared buttons */
+.btn-primary {
+  padding: 0.9rem 2.2rem;
+  background: var(--copper);
+  color: var(--off-white);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--copper-light);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  padding: 0.9rem 2.2rem;
+  background: transparent;
+  color: #0220f4;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid #0220f4;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-secondary:hover {
+  border: 1px solid #f7c81a;
+  background: #f7c81a;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Shared nav-logo (used in nav + footer) */
+.nav-logo {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  text-decoration: none;
+}
+.nav-logo span { color: #000; }
+
+@media (max-width: 900px) {
+  section { padding: 5rem 1.5rem; }
+}

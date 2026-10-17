@@ -1,0 +1,111 @@
+/* ================================
+   CONTACT
+   ================================ */
+
+.contact {
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+  padding: 7rem 3rem;
+}
+.contact-detail {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.contact-item-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(2,32,244,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--copper);
+  margin-top: 0.1rem;
+}
+.contact-item-label {
+  font-size: 0.80rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0220f4;
+  margin-bottom: 0.25rem;
+}
+.contact-item-value {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-item-value:hover { color: var(--copper-light); }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.form-input, .form-select, .form-textarea {
+  background: rgb(235 238 254);
+  border: 1px solid rgba(2,32,244,0.2);
+  padding: 0.85rem 1rem;
+  color: #7b87dc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--copper);
+  background: rgba(2,32,244,0.05);
+}
+.form-input::placeholder, .form-textarea::placeholder {
+  color: #7b87dc;
+}
+.form-select option { background: var(--charcoal-mid); }
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-group-full { margin-bottom: 1rem; }
+.form-submit {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+  background: var(--copper);
+  color: var(--off-white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.form-submit:hover {
+  background: var(--copper-light);
+  transform: translateY(-2px);
+}

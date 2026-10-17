@@ -1,0 +1,94 @@
+/* ================================
+   PROCESS
+   ================================ */
+
+.process {
+  background: #fff;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 6rem;
+  margin-top: 5rem;
+}
+.process-nav {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  background: rgb(235 238 254);
+}
+.process-nav-item {
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(2,32,244,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.process-nav-item:last-child { border-bottom: 1px solid rgba(2,32,244,0.15); }
+.process-nav-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+.process-nav-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #000;
+  transition: color 0.3s;
+}
+.process-nav-item:hover .process-nav-label,
+.process-nav-item.active .process-nav-label { color: var(--copper); }
+.process-nav-item.active { border-color: var(--copper); }
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.process-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.step-num-large {
+  font-family: "Montserrat", sans-serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(2,32,244,0.18);
+  line-height: 0.9;
+  min-width: 80px;
+}
+.step-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #0220f4;
+  margin-bottom: 1rem;
+}
+.step-desc {
+  font-size: 0.93rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 520px;
+}
+.step-detail {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(2,32,244,0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.step-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  background: rgba(2,32,244,0.08);
+  color: var(--copper-light);
+  border: 1px solid rgba(2,32,244,0.2);
+}

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Detail — Elwood Blues Construction</title>
+  <meta name="description" content="Detailed project photos by Elwood Blues Construction — Phoenix, AZ.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 50vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 10rem 3rem 5rem;
+      position: relative; overflow: hidden; background: #fff;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background:
+      radial-gradient(ellipse 65% 80% at 85% 40%, rgba(2,32,244,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(2,32,244,0.04) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image:
+      repeating-linear-gradient(0deg, var(--copper) 0px, transparent 1px, transparent 80px, var(--copper) 80px),
+      repeating-linear-gradient(90deg, var(--copper) 0px, transparent 1px, transparent 80px, var(--copper) 80px);
+    }
+    .page-hero-content { position: relative; z-index: 1;}
+    .page-breadcrumb {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .page-breadcrumb a { color: var(--copper); text-decoration: none; }
+    .page-breadcrumb a:hover { color: var(--copper-light); }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+      margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .page-title em { font-style: italic; color: var(--copper-light); }
+    .page-lead {
+      font-size: 1rem; line-height: 1.8; color: var(--text-muted);
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .page-hero-rule {
+      position: absolute; bottom: 0; left: 3rem; right: 3rem;
+      height: 1px; background: linear-gradient(to right, var(--copper), transparent); opacity: 0.3;
+    }
+    /* Mini CTA */
+    .mini-cta { background: var(--stone); padding: 5rem 3rem; text-align: center; }
+    .mini-cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+      color: var(--charcoal); margin-bottom: 1rem;
+    }
+    .mini-cta-headline em { font-style: italic; color: var(--copper-dark); }
+    .mini-cta-sub { font-size: 0.93rem; color: #6A6058; margin-bottom: 2.5rem; line-height: 1.7; }
+    .mini-cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .mini-cta .btn-primary { background: var(--charcoal); color: var(--off-white); }
+    .mini-cta .btn-primary:hover { background: var(--copper-dark); }
+    .mini-cta .btn-secondary { border-color: rgba(26,24,20,0.3); color: var(--charcoal); }
+    .mini-cta .btn-secondary:hover { border-color: var(--charcoal); }
+    @media (max-width: 900px) {
+      .page-hero { padding: 8rem 1.5rem 4rem; }
+      .page-hero-rule { left: 1.5rem; right: 1.5rem; }
+      .mini-cta { padding: 4rem 1.5rem; }
+    }
+
+    /* ===== PROJECT DETAIL (before / after slideshows) ===== */
+    .project-detail { background: #fff; padding: 9.5rem 3rem 5rem; }
+    .project-detail-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 4rem; align-items: start;
+    }
+    .project-info { position: sticky; top: 7rem; }
+    .project-info .page-breadcrumb { flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.3rem, 4vw, 3.6rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+      color: var(--charcoal); margin: 0 0 1.25rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .project-title em { font-style: italic; color: var(--copper-light); }
+    .project-title-rule {
+      width: 100%; max-width: 360px; height: 2px; margin-bottom: 1.75rem;
+      background: linear-gradient(to right, var(--copper), transparent);
+      opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+    }
+    .project-desc {
+      font-size: 1rem; line-height: 1.85; color: var(--text-muted);
+      opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+    }
+    .project-desc p { margin: 0 0 1.25em; }
+    .project-desc p:last-child { margin-bottom: 0; }
+
+    .project-media { display: flex; flex-direction: column; gap: 1.75rem; min-width: 0; }
+    .pslide-wrap[hidden] { display: none; }
+
+    .pslide {
+      position: relative; background: var(--charcoal);
+      box-shadow: 0 10px 34px rgba(10,10,10,0.14);
+      outline-offset: 4px;
+    }
+    .pslide-viewport { overflow: hidden; aspect-ratio: 3 / 2; touch-action: pan-y; }
+    .pslide-track { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(.22,.7,.2,1); }
+    .pslide-slide { flex: 0 0 100%; height: 100%; margin: 0; cursor: zoom-in; background: #1a1a1a; }
+    .pslide-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .pslide-tag {
+      position: absolute; top: 1rem; left: 1rem; z-index: 2;
+      background: var(--charcoal); color: #fff;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.45rem 0.9rem;
+    }
+    .pslide-wrap.is-after .pslide-tag { background: var(--copper); }
+    .pslide-count {
+      position: absolute; bottom: 1rem; right: 1rem; z-index: 2;
+      background: rgba(10,10,10,0.65); color: #fff;
+      font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.35rem 0.7rem;
+    }
+    .pslide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+      width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
+      background: rgba(255,255,255,0.92); color: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .pslide-btn:hover { background: var(--copper); color: #fff; transform: translateY(-50%) scale(1.06); }
+    .pslide-btn.prev { left: 0.9rem; }
+    .pslide-btn.next { right: 0.9rem; }
+
+    .pslide-empty { background: var(--stone); box-shadow: none; border: 1px dashed var(--stone-mid); }
+    .pslide-placeholder {
+      height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.9rem; color: var(--text-muted); text-align: center; padding: 1.5rem;
+    }
+    .pslide-placeholder p {
+      margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; font-style: italic;
+    }
+
+    @media (max-width: 960px) {
+      .project-detail { padding: 8rem 1.5rem 3.5rem; }
+      .project-detail-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .project-info { position: static; }
+    }
+    @media (max-width: 520px) {
+      .pslide-btn { width: 38px; height: 38px; }
+      .pslide-btn.prev { left: 0.5rem; } .pslide-btn.next { right: 0.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { .pslide-track { transition: none; } }
+  </style>
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Elwood Blues Construction" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="gallery.html" style="color:#f7c81a">Gallery</a></li>
+      <li><a href="contact.php">Contact</a></li>
+    </ul>
+    <a href="contact.php" class="nav-cta">Start a Project</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Mobile Sidebar -->
+  <aside class="nav-sidebar" id="navSidebar" aria-hidden="true">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">
+        <img src="images/logo.png" alt="Elwood Blues Construction" class="sidebar-logo-img">
+      </a>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <nav class="sidebar-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="sidebar-link"><span class="sidebar-link-num">01</span><span class="sidebar-link-text">Home</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="services.html" class="sidebar-link"><span class="sidebar-link-num">02</span><span class="sidebar-link-text">Services</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="about.html" class="sidebar-link"><span class="sidebar-link-num">03</span><span class="sidebar-link-text">About</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="process.html" class="sidebar-link"><span class="sidebar-link-num">04</span><span class="sidebar-link-text">Process</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="gallery.html" class="sidebar-link active"><span class="sidebar-link-num">05</span><span class="sidebar-link-text">Gallery</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="contact.php" class="sidebar-link"><span class="sidebar-link-num">06</span><span class="sidebar-link-text">Contact</span><svg class="sidebar-link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="contact.php" class="sidebar-cta">Start a Project</a>
+      <p class="sidebar-tagline">Precision craftsmanship.<br>Phoenix, AZ.</p>
+    </div>
+  </aside>
+
+  <!-- PROJECT DETAIL — populated from PROJECTS data by the script below -->
+  <main class="project-detail">
+    <div class="project-detail-inner">
+
+      <!-- LEFT: name + description -->
+      <div class="project-info">
+        <div class="page-breadcrumb" id="projectBreadcrumb">
+          <a href="index.html">Home</a>
+          <span>›</span>
+          <a href="gallery.html">Gallery</a>
+          <span>›</span>
+          <span id="breadcrumbProject">Project</span>
+        </div>
+        <h1 class="project-title" id="projectTitle">Loading…</h1>
+        <div class="project-title-rule"></div>
+        <div class="project-desc" id="projectDesc"></div>
+      </div>
+
+      <!-- RIGHT: Before slideshow (top) + After slideshow (bottom) -->
+      <div class="project-media" id="projectMedia">
+        <div class="pslide-wrap" id="beforeWrap" hidden></div>
+        <div class="pslide-wrap" id="afterWrap" hidden></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MINI CTA -->
+  <div class="mini-cta">
+    <h2 class="mini-cta-headline reveal">Like what you see?<br><em>Let's build yours.</em></h2>
+    <p class="mini-cta-sub reveal">Every project starts with a conversation. Harris responds personally within one business day.</p>
+    <div class="mini-cta-buttons reveal">
+      <a href="contact.php" class="btn-primary">Request a Consultation →</a>
+      <a href="gallery.html" class="btn-secondary">← Back to Gallery</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo.png" alt="Elwood Blues Construction" class="nav-logo-img" style="height:44px;">
+        </a>
+        <p class="footer-tagline" style="margin-top:1rem;">"Built to be heirloom.<br>Engineered for Phoenix."</p>
+        <div style="font-size:1rem; color:#fff; margin-top:1rem;">
+          Phoenix, AZ 85022<br>
+          <a href="tel:6232626579" style="color:#000; text-decoration:none;">(623) 262-6579</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Home Remodeling</a></li>
+          <li><a href="services.html">Home Additions</a></li>
+          <li><a href="services.html">New Construction</a></li>
+          <li><a href="services.html">Renovations</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html">About Harris</a></li>
+          <li><a href="process.html">Our Process</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="https://www.bbb.org/us/az/phoenix/profile/residential-general-contractor/elwood-blues-construction-llc-1126-1000164015" target="_blank">BBB Profile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 Elwood Blues Construction LLC · All rights reserved · Phoenix, AZ · Designed &amp; Developed By: <a href="https://infowaveitsolutions.com/" target="_blank" style="text-decoration:none; color:#000;"> Infowave IT Solutions</a></div>
+      <div class="footer-bbb">
+        <a href="https://www.bbb.org/us/az/phoenix/profile/residential-general-contractor/elwood-blues-construction-llc-1126-1000164015" target="_blank" class="bbb-badge" style="text-decoration:none;">BBB Accredited · A+</a>
+        <span>| ROC# 348242 |</span>
+        <span>Licensed · Bonded · Insured</span>
+        <a href="https://www.facebook.com/profile.php?id=61590894736763" target="_blank" class="footer-instagram" aria-label="Follow us on Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <span>facebook</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="site-lightbox" role="dialog" aria-modal="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lb-close" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 1l12 12M13 1L1 13"/>
+        </svg>
+      </button>
+      <button class="lightbox-arrow prev" id="lb-prev" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M11 4L6 9l5 5"/>
+        </svg>
+      </button>
+      <button class="lightbox-arrow next" id="lb-next" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M7 4l5 5-5 5"/>
+        </svg>
+      </button>
+      <div class="lightbox-img-wrap" id="lb-img-wrap"></div>
+      <div class="lightbox-counter" id="lb-counter"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script>
+    const PROJECTS = {
+      'nunley': {
+        title: 'Nunley',
+        titleHtml: 'Project <em>Nunley</em>',
+        tag: 'Renovation',
+        description: 'This primary bathroom was transformed from its original builder-grade finishes into a brighter, more refined space. White and warm taupe tones replaced the darker cabinetry and tile, complemented by stained white oak cabinetry for a natural, modern finish. The bulky built-in tub enclosure was replaced with a freestanding tub, creating a more open layout and easier access, with a custom fluted walnut accent wall adding warmth and character. The shower was also upgraded with coordinating tile extended to the ceiling for a clean, cohesive finish.',
+        images: [
+          // { src: 'images/gallery/nunley/before.png', alt: 'Nunley — before' },
+          // { src: 'images/gallery/nunley/after.png', alt: 'Nunley — before' },
+        ]
+      },
+      'kanuga': {
+        title: 'Kanuga',
+        titleHtml: 'Project <em>Kanuga</em>',
+        tag: 'Remodeling',
+        description: 'This bathroom was refreshed with a lighter, more modern design while complementing the home’s existing warm, neutral tones. The shower was completely updated with new tile extended to the ceiling, a frameless glass enclosure, and a beautiful mosaic floor tile carried into the back of the shower niche for a cohesive accent. A Taj Mahal countertop replaced the original tiled countertop and backsplash, tying together the colors and finishes throughout the space. Updated plumbing fixtures and a new light fixture in coordinating brushed nickel finishes completed the transformation with a clean, modern look.',
+        images: [
+          { src: 'images/gallery/kanuga/after-1.png',    alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/after-2.png', alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/after-3.png', alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/after-4.png', alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/after-5.png', alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/after-6.png', alt: 'kanuga — After' },
+          { src: 'images/gallery/kanuga/before-1.png', alt: 'kanuga — before' },
+          { src: 'images/gallery/kanuga/before-2.png', alt: 'kanuga — before' },
+          { src: 'images/gallery/kanuga/before-3.png', alt: 'kanuga — before' },
+          { src: 'images/gallery/kanuga/before-4.png', alt: 'kanuga — before' },
+          { src: 'images/gallery/kanuga/before-5.png', alt: 'kanuga — before' },
+        ]
+      },
+      'clarendon': {
+        title: 'Clarendon',
+        titleHtml: 'Project <em>Clarendon</em>',
+        tag: 'Remodeling',
+        description: [
+          'Originally built in 1954, this home had seen several updates over the years but was ready for a complete transformation. The goal was to bring new life to the home with modern finishes and thoughtful upgrades while adding character throughout.',
+          'The kitchen was completely remodeled with custom dark-stained fluted cabinetry and a new 9-foot island with bar seating. The island became the centerpiece of the space, featuring a custom waterfall countertop wrapping both ends and continuing across the entire bar side. A custom Venetian plaster finish surrounding the sink area added texture, warmth, and a handcrafted element to the kitchen design. Updated flush-mount puck lighting with a warm halo effect and new large-format flooring throughout the home helped complete the clean, contemporary feel.',
+          'The hall bathroom received a full remodel featuring a new tub with a floor-to-ceiling tile surround, frameless glass, brushed-gold fixtures, and rich dark-red accents. Matching fluted cabinetry and countertops carried the kitchen design into the bathroom, while the shower tile continued behind the vanity to the ceiling. An arched LED mirror, coordinating gold light fixture, and custom vanity sink completed the space with a distinctive artistic touch.',
+          'In the primary bathroom, we built upon a previous renovation by extending the existing shower tile across the vanity backsplash and pony wall. A new countertop coordinated the space with the rest of the home, while a large LED mirror replaced the existing sconces for a cleaner finish.',
+          'The remodel was completed with new door casing, taller baseboards, updated lighting, and fresh paint throughout the walls, ceilings, and trim, bringing the entire home together with a cohesive and refreshed design.'
+        ],
+        images: [
+          { src: 'images/gallery/clarendon/after-1.png',    alt: 'clarendon — After' },
+          { src: 'images/gallery/clarendon/after-2.png', alt: 'clarendon — After' },
+          { src: 'images/gallery/clarendon/after-3.png', alt: 'clarendon — After' },
+          { src: 'images/gallery/clarendon/after-4.png', alt: 'clarendon — After' },
+          { src: 'images/gallery/clarendon/before-1.png', alt: 'clarendon — before' },
+          { src: 'images/gallery/clarendon/before-2.png', alt: 'clarendon — before' },
+          { src: 'images/gallery/clarendon/before-3.png', alt: 'clarendon — before' },
+          { src: 'images/gallery/clarendon/before-4.png', alt: 'clarendon — before' },
+        ]
+      },
+      'carrasco': {
+        title: 'Carrasco',
+        titleHtml: 'Project <em>Carrasco</em>',
+        tag: 'Remodeling',
+        description: [
+          'Designed to span the client’s entire poolside seating area, this expansive patio cover combines substantial structural construction with refined architectural finishes. Massive glulam beams are supported by a single steel post anchored into a large reinforced concrete footing engineered to carry the significant load of the structure. A custom-fabricated, face-mounted steel hanger supports the adjoining beam while maintaining the open, unobstructed design the client envisioned.',
+          'The exposed steel post and hanger were acid-washed to create a rustic finish, complementing the existing metal planters and architectural details throughout the property. Overhead, a honey-stained tongue-and-groove ceiling adds warmth and character, finished with integrated puck lighting and ceiling fans for comfort and ambiance.',
+          'Black fascia and eaves were painted to match the home’s existing exterior trim, creating a seamless transition between the new structure and the residence.',
+          'The result is a bold, sophisticated outdoor living space built for poolside entertaining and designed to feel like a natural extension of the home.'
+        ],
+        images: [
+          { src: 'images/gallery/carrasco/after-1.png',    alt: 'Carrasco — After' },
+          { src: 'images/gallery/carrasco/after-2.png', alt: 'Carrasco — After' },
+          { src: 'images/gallery/carrasco/after-3.png', alt: 'Carrasco — After' },
+          { src: 'images/gallery/carrasco/after-4.png', alt: 'Carrasco — After' },
+          { src: 'images/gallery/carrasco/before.png', alt: 'Carrasco — before' },
+        ]
+      },
+      'monterosa': {
+        title: 'Monterosa',
+        titleHtml: 'Monterosa <em>Renovation</em>',
+        tag: 'Monterosa Renovation',
+        description: [
+          'A 1965 home, thoughtfully reimagined.',
+          'This exterior renovation was about more than updating an aging home. The goal was to create a cohesive design that elevated the property while respecting its original architecture.',
+          'At the front of the home, the existing carport and porch were transformed with new framing, custom-stained woodwork, and a refined exterior color palette. Overhead, wood batten strips create a warm, continuous ceiling that carries through the covered spaces. Modern skylights were integrated into the ceiling, along with flush-mount puck lighting featuring a halo setting, creating a subtle warmth that highlights the natural character of the wood.',
+          'New pavers now extend throughout the driveway, carport, front porch, and walkway, giving the exterior a consistent foundation from the street to the entry. Custom-fabricated metal gates with stained wood accents were designed to complement the new framing and bring the material palette together.',
+          'The side yard presented an entirely different challenge.',
+          'The original deck had been constructed close to the soil and, after decades of exposure to flood irrigation, had significantly deteriorated. We removed the existing structure and rebuilt the deck on elevated footers, creating separation from the soil and addressing the conditions that contributed to the original deck’s failure.',
+          'What was once an overlooked side yard is now a purposeful extension of the home.',
+          'A custom wood shade structure spans the side deck and lounge area, providing relief during the warmer months while creating beautiful architectural shadows throughout the day. We incorporated a custom-built bench, bar top off the storage room, and warm integrated lighting along the deck, walls, and steps to give the space an entirely different presence after sunset.',
+          'The result is a renovation where every element—from the structural improvements to the smallest finish details—was considered as part of one cohesive design.',
+          'Nearly six decades after this home was built, it has a completely renewed exterior while still retaining the character that makes it unique.'
+        ],
+        images: [
+          { src: 'images/gallery/monterosa/after-1.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-2.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-3.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-4.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-5.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-6.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-7.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-8.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-9.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-10.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-11.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/after-12.png', alt: 'Monterosa — After' },
+          { src: 'images/gallery/monterosa/before-1.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-2.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-3.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-4.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-5.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-6.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-7.png', alt: 'Monterosa — Before' },
+          { src: 'images/gallery/monterosa/before-8.png', alt: 'Monterosa — Before' },
+        ]
+      },
+      'wagner': {
+        title: 'Wagner',
+        titleHtml: 'Wagner <em>Renovation</em>',
+        tag: 'Wagner Renovation',
+        description: [
+          'From water damage to a completely rebuilt shower. What began as a shower leak resulted in extensive water damage and mold, requiring the space to be fully opened up and professionally remediated before reconstruction could begin.',
+          'Once the area was ready, we rebuilt the shower from the ground up—starting with relocating and centering the drain and recreating the curbless shower for a clean, seamless transition.',
+          'The client selected a soft mint-colored wall tile, which we paired with their existing small-format square tile to tie the new shower into the bathroom’s original colors and finishes. We also incorporated a recessed soap niche for added function without interrupting the clean lines of the shower.',
+          'To finish the space, we installed a sliding glass shower enclosure with opaque rain glass, providing privacy while still allowing light into the shower.',
+          'A water-damage repair turned into an opportunity to rebuild the space properly and give the bathroom a fresh, cohesive finish.'
+        ],
+        images: [
+          { src: 'images/gallery/wagner/after-1.png', alt: 'Wagner — After' },
+          { src: 'images/gallery/wagner/after-2.png', alt: 'Wagner — After' },
+          { src: 'images/gallery/wagner/after-3.png', alt: 'Wagner — After' },
+          { src: 'images/gallery/wagner/before.png', alt: 'Wagner — before' },
+        ]
+      },
+        'tailfeather': {
+        title: 'Tailfeather',
+        titleHtml: 'Tailfeather <em>Renovation</em>',
+        tag: 'Tailfeather Renovation',
+        description: [
+          'What began as a leaking upstairs shower became an opportunity to not only restore the damaged area, but give the home a more refined, updated look. We removed the existing shower down to the studs, treated the affected areas for mold, replaced insulation and drywall, and repaired the garage ceiling below where the leak had caused additional damage.',
+          'For the rebuild, we installed a stone-look composite shower system, delivering the clean appearance of large-format stone slabs at a more cost-effective price point. A sliding glass enclosure with opaque privacy glass provides a polished finish while offering additional privacy for visiting guests.',
+          'To carry the updated aesthetic beyond the shower, the homeowners chose to replace the countertops in both the hall bathroom and primary bathroom, along with new plumbing fixtures to complement the more modern finishes.',
+          'The result is a clean, cohesive renovation that resolved the original water damage while bringing a fresh, sophisticated look to both bathrooms.'
+        ],
+        images: [
+          { src: 'images/gallery/tailfeather/after-1.png', alt: 'Tailfeather — After' },
+          { src: 'images/gallery/tailfeather/after-2.png', alt: 'Tailfeather — After' },
+          { src: 'images/gallery/tailfeather/after-3.png', alt: 'Tailfeather — After' },
+          { src: 'images/gallery/tailfeather/after-4.png', alt: 'Tailfeather — After' },
+          { src: 'images/gallery/tailfeather/after-5.png', alt: 'Tailfeather — After' },
+          { src: 'images/gallery/tailfeather/before.png', alt: 'Tailfeather — before' },
+          { src: 'images/gallery/tailfeather/before-1.png', alt: 'Tailfeather — before' },
+        ]
+      },
+        'cactusacres': {
+        title: 'Cactus Acres',
+        titleHtml: 'Cactus Acres <em>Renovation</em>',
+        tag: 'Cactus Acres',
+        description: [
+          'This primary bathroom was completely reimagined from an outdated, enclosed space into a bright, spacious retreat with a refined modern aesthetic. We removed the existing perimeter soffit and relocated the HVAC ductwork, allowing us to raise the ceilings and create a more open, expansive feel throughout the room.',
+          'The water closet was enlarged and redesigned with a full-height ceiling, properly vented exhaust fan, and an opaque single-lite door that provides privacy while making the space feel less confined. Expanding this area also allowed us to increase the footprint of the shower and create a spacious curbless entry with a concealed tile-in linear drain. A lighted shower niche adds subtle ambiance, while frameless glass with gold-toned hardware brings an elegant finishing touch.',
+          'The original oversized built-in tub surround was replaced with a freestanding clawfoot tub and floor-mounted tub filler, opening up valuable space for a longer double vanity with a center storage tower. The double vanity features its own custom medicine cabinet and individual LED mirrors above each sink, while the expanded makeup vanity has a separate custom medicine cabinet and dedicated LED mirror. Modern floating shelves behind the shower provide additional storage while maintaining the clean architectural lines of the room.',
+          'Large-format polished porcelain tile flows across the floors, wraps the freestanding tub area, and continues onto the shower walls, paired with coordinating hexagon tile on the shower floor to tie the finishes together. LED flush-mount puck lighting, a statement chandelier above the tub, and freshly painted walls and ceilings complete the transformation.',
+          'The result is a thoughtfully redesigned primary bathroom that feels larger, brighter, and more luxurious, with improved functionality, storage, and carefully considered details throughout.'
+        ],
+        images: [
+          { src: 'images/gallery/cactus-acres/after-1.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-2.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-3.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-4.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-5.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-6.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-7.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-8.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/after-9.png', alt: 'Cactus Acres — After' },
+          { src: 'images/gallery/cactus-acres/before-1.png', alt: 'Cactus Acres — before' },
+          { src: 'images/gallery/cactus-acres/before-2.png', alt: 'Cactus Acres — before' },
+        ]
+      },
+      'singleton': {
+        title: 'Singleton',
+        titleHtml: 'Singleton <em>Renovation</em>',
+        tag: 'Singleton',
+        description: [
+          'This project focused on correcting several issues left behind from a previous patio addition while finding a practical, cost-conscious solution that avoided unnecessary demolition. The existing patio extension had been tiled without proper slope away from the home, causing significant water to collect and flood the patio during rainfall. The aging patio roof was also leaking, and its original design concentrated runoff heavily to one side.',
+          'To address the drainage issue, we cut into the existing patio and installed an 8-inch channel drain, connecting it to a French drain system that runs along the side of the home and discharges into the river rock landscaping in the front yard. This provided an effective path for water management without the expense of removing and rebuilding the entire patio.',
+          'At the roof, we repaired the deteriorated areas and incorporated a custom cricket system to redirect and better distribute rainfall, reducing the heavy concentration of water along one side. The damaged tongue-and-groove patio ceiling was also replaced with a wider-plank tongue-and-groove finish and painted to complement the home’s exterior.',
+          'To complete the project, we installed a matching gate on the opposite side of the property, maintaining consistency with the existing gate while meeting the community’s HOA requirements.',
+          'The result is a clean, integrated solution that improves drainage, protects the patio from future water intrusion, and refreshes the outdoor space without the cost of a complete rebuild.'
+        ],
+        images: [
+          { src: 'images/gallery/singleton/after-1.png', alt: 'Singleton — After' },
+          { src: 'images/gallery/singleton/after-2.png', alt: 'Singleton — After' },
+          { src: 'images/gallery/singleton/after-3.png', alt: 'Singleton — After' },
+          { src: 'images/gallery/singleton/after-4.png', alt: 'Singleton — After' },
+          { src: 'images/gallery/singleton/before-1.png', alt: 'Singleton — before' },
+          { src: 'images/gallery/singleton/before-2.png', alt: 'Singleton — before' },
+        ]
+      },
+        'flowercirclecarport': {
+        title: 'Flower Circle - Carport',
+        titleHtml: 'Flower Circle - <em>Carport</em>',
+        tag: 'Flower Circle - Carport',
+        description: [
+          'The original 1950s metal carport had reached the end of its life, with a deteriorating structure and crumbling concrete. The client wanted to replace it with something entirely different—a grand, modern carport designed to complement the home while making an architectural statement of its own.',
+          'We removed the existing structure and concrete and rebuilt the carport from the ground up. Massive steel posts set into reinforced footings support the primary load points, while substantial glulam beams provide the strength needed to achieve the expansive spans and open layout.',
+          'To elevate the finish, the ceiling was detailed with custom-stained wood batten strips, complemented by flush-mount Bluetooth LED puck lights for functional illumination and integrated perimeter LED lighting for a subtle, luxurious glow at night. The beams and fascia were wrapped in metal, creating crisp lines and a clean, contemporary finish.',
+          'The new roofing system features black modified bitumen roofing, carefully integrated into the detached office and existing home. Where the new structure meets the existing roofs, matching shingles were incorporated to create a cohesive, seamless transition.',
+          'The result is a substantial architectural upgrade that transforms a deteriorating 1950s carport into a sophisticated, modern extension of the property.'
+        ],
+        images: [
+          { src: 'images/gallery/flower-circle-Carport/after-1.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-2.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-3.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-4.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-5.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-6.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/after-7.png', alt: 'flower-circle-Carport — After' },
+          { src: 'images/gallery/flower-circle-Carport/before-1.png', alt: 'flower-circle-Carport — before' },
+        ]
+      },
+        'cabot': {
+        title: 'Cabot',
+        titleHtml: 'Project <em>Cabot</em>',
+        tag: 'Cabot',
+        description: [
+          'This rental property needed a simple, strategic update to give the kitchen a cleaner and more inviting appearance. The existing epoxy countertops had begun to yellow, while the peel-and-stick backsplash was showing its age and taking away from the overall look of the space.',
+          'To keep the renovation cost-effective and appropriate for an investment property, we replaced the existing surfaces with prefabricated quartz countertops, providing the durability and elevated appearance of quartz without overinvesting in the space. We completed the update with a custom tile backsplash, selected to complement the existing cabinetry and finishes.',
+          'A straightforward renovation with a significant impact—the kitchen now feels cleaner, brighter, and more polished, creating a much more appealing space for future tenants.'
+        ],
+        images: [
+          { src: 'images/gallery/cabot/after-1.png', alt: 'Cabot — After' },
+          { src: 'images/gallery/cabot/after-2.png', alt: 'Cabot — After' },
+          { src: 'images/gallery/cabot/after-3.png', alt: 'Cabot — After' },
+          { src: 'images/gallery/cabot/after-4.png', alt: 'Cabot — After' },
+          { src: 'images/gallery/cabot/before-1.png', alt: 'Cabot — before' },
+          { src: 'images/gallery/cabot/before-2.png', alt: 'Cabot — before' },
+          { src: 'images/gallery/cabot/before-3.png', alt: 'Cabot — before' },
+        ]
+      },
+        'flowercircledetachedoffice': {
+        title: 'Flower Circle - Detached Office',
+        titleHtml: 'Flower Circle - <em>Detached Office</em>',
+        tag: 'Flower Circle - Detached Office',
+        description: [
+          'With the detached garage no longer serving the client’s needs, we transformed it into a fully conditioned private office and entertainment space with a seamless indoor-outdoor connection.',
+          'The original garage door was removed, and the existing window was repurposed into the newly framed exterior wall. The standard entry door was replaced with an impressive 16-foot bifold door featuring an integrated man door, providing convenient everyday access while allowing the entire space to open to the new outdoor lounge.',
+          'Outside, we poured a new patio slab and finished it with large-format tile selected to complement the plank tile inside the office. The new patio roof is supported by steel posts and finished with black standing-seam metal roofing and wrapped fascia for a clean, contemporary profile. Custom-stained batten strips finish the ceiling and exterior wall, adding warmth and architectural character.',
+          'Inside, we constructed a perimeter pony wall with a walnut-stained cap, providing convenient access to outlets throughout the office for work, gaming, and entertainment. A mini-split system provides year-round heating and cooling, while Bluetooth-controlled LED puck lighting allows the client to customize the color and tone of the space directly from their phone.',
+          'The result is a refined, multifunctional space that transitions effortlessly from a private office to an open-air lounge and entertainment area.'
+        ],
+        images: [
+          { src: 'images/gallery/flowercircle-detached-office/after-1.png', alt: 'Flower Circle - Detached Office — After' },
+          { src: 'images/gallery/flowercircle-detached-office/after-2.png', alt: 'Flower Circle - Detached Office — After' },
+          { src: 'images/gallery/flowercircle-detached-office/after-3.png', alt: 'Flower Circle - Detached Office — After' },
+          { src: 'images/gallery/flowercircle-detached-office/after-4.png', alt: 'Flower Circle - Detached Office — After' },
+          { src: 'images/gallery/flowercircle-detached-office/after-5.png', alt: 'Flower Circle - Detached Office — After' },
+          { src: 'images/gallery/flowercircle-detached-office/before-1.png', alt: 'Flower Circle - Detached Office — before' },
+          { src: 'images/gallery/flowercircle-detached-office/before-2.png', alt: 'Flower Circle - Detached Office — before' },
+          { src: 'images/gallery/flowercircle-detached-office/before-3.png', alt: 'Flower Circle - Detached Office — before' },
+        ]
+      },
+      'verrado': {
+        title: 'Verrado',
+        titleHtml: 'Project - <em>Verrado</em>',
+        tag: 'Verrado',
+        description: [
+          'This project was all about bringing new life to a builder-grade kitchen without the expense of a complete renovation. By preserving the existing cabinetry and focusing the budget on thoughtful finish upgrades, we were able to dramatically transform the space without starting from scratch.',
+          'The original cabinets were professionally refinished in a fresh white tone, immediately making the kitchen feel brighter and more open. We also installed new cabinet hardware, adding a modern finishing detail while helping protect the newly refinished surfaces from the wear and oils that come with everyday use.',
+          'The existing granite countertops were replaced with clean white quartz, while the island received a contrasting blue finish to introduce depth and personality.',
+          'To complete the transformation, we installed new flooring in a custom herringbone pattern, giving the kitchen a more distinctive, elevated look.',
+          'The result is a bright, polished kitchen that feels completely renewed through smart, cost-conscious upgrades—proving that a beautiful transformation doesn’t always require a full-scale remodel.'
+        ],
+        images: [
+          { src: 'images/gallery/verrado/after-1.png', alt: 'Verrado — After' },
+          { src: 'images/gallery/verrado/after-2.png', alt: 'Verrado — After' },
+          { src: 'images/gallery/verrado/before-1.png', alt: 'Verrado — before' },
+          { src: 'images/gallery/verrado/before-2.png', alt: 'Verrado — before' },
+          { src: 'images/gallery/verrado/before-3.png', alt: 'Verrado — before' },
+        ]
+      },
+        'albuquerque': {
+        title: 'Albuquerque',
+        titleHtml: 'Project - <em>Albuquerque</em>',
+        tag: 'Albuquerque',
+        description: [
+          'This renovation transformed an outdated kitchen, bar, and breakfast nook into a rich, highly customized space inspired by the family’s ties to New Mexico. Dated wallpaper and dark cabinetry were replaced with custom cabinetry throughout, with each component individually hand-finished to achieve a truly bespoke look.',
+          'The kitchen was redesigned around a larger island, creating more room for cooking, gathering, and entertaining. Volcano Black countertops were used throughout, with a double-laminated, chiseled-edge island top adding substantial texture and character. Custom copper apron-front sinks became statement pieces in both the kitchen and bar.',
+          'One of the defining features of the renovation is the use of custom Venetian plaster in turquoise and copper tones, selected as a tribute to the family’s New Mexico heritage. Those colors carry into the custom-designed travertine and turquoise backsplash, creating a distinctive focal point while tying the finishes together.',
+          'The bar received a sophisticated two-tone treatment, custom wine glass storage within the arched opening, Venetian plaster detailing, a foot rail, and under-counter lighting. Under and above cabinet lighting throughout the kitchen adds another layer of warmth and dimension.',
+          'The adjoining breakfast nook was redesigned with the same custom cabinetry and finishes, allowing all three spaces to feel intentionally connected.',
+          'The result is a one-of-a-kind renovation filled with handcrafted details, rich textures, and personal touches—creating a warm, luxurious space designed around both entertaining and the family’s heritage.'
+        ],
+        images: [
+          { src: 'images/gallery/albuquerque/after-1.png', alt: 'albuquerque — After' },
+          { src: 'images/gallery/albuquerque/after-2.png', alt: 'albuquerque — After' },
+          { src: 'images/gallery/albuquerque/after-3.png', alt: 'albuquerque — After' },
+          { src: 'images/gallery/albuquerque/after-4.png', alt: 'albuquerque — After' },
+          { src: 'images/gallery/albuquerque/after-5.png', alt: 'albuquerque — After' },
+          { src: 'images/gallery/albuquerque/before-1.png', alt: 'albuquerque — before' },
+          { src: 'images/gallery/albuquerque/before-2.png', alt: 'albuquerque — before' },
+          { src: 'images/gallery/albuquerque/before-3.png', alt: 'albuquerque — before' },
+        ]
+      },
+      'smith': {
+        title: 'Smith',
+        titleHtml: 'Project - <em>Smith</em>',
+        tag: 'Smith',
+        description: [
+          'This kitchen was completely reimagined from its original, outdated layout into a spacious, sophisticated kitchen designed around entertaining. The homeowners wanted a space that could comfortably accommodate larger gatherings while delivering the clean, modern aesthetic they envisioned.',
+          'One of the biggest transformations came from removing the existing soffits throughout the kitchen. We relocated the HVAC ductwork into the floor-joist system between the first and second floors, allowing us to open the ceiling and take full advantage of the available space.',
+          'The new kitchen features custom cabinetry with a combination of natural white oak and painted finishes. White oak was used throughout the base cabinetry, refrigerator, and pantry areas, while painted upper cabinets provide contrast and keep the space feeling bright. The built-in range hood was framed and wrapped in the same slab material selected for the countertops, with custom spice shelving integrated on each side for convenient access while cooking.',
+          'To create a more seamless, luxurious finish, the countertop slab material was also carried vertically onto the backsplash, creating continuity throughout the kitchen with minimal grout lines. At the sink, we incorporated a custom window niche, adding architectural depth and creating a beautifully finished focal point around the workspace.',
+          'At the center of the design is an expansive primary island with a prep sink, providing generous workspace while serving as a natural gathering point. The backside was fully wrapped with custom detailing and carefully designed angles for a refined, furniture-like finish. A secondary island with bar seating adds another entertaining area and features fluted paneling along the back for additional texture and architectural detail.',
+          'Integrated under-cabinet and under-counter lighting, along with new flush-mount LED puck lights, creates layered illumination throughout the space. Behind the custom cabinetry are thoughtful functional details, including a cooking-utensil rollout beside the range, concealed trash rollout, and microwave drawer integrated into the pantry cabinetry.',
+          'Fresh paint throughout ties the renovation seamlessly into the surrounding interior.',
+          'The result is a highly customized kitchen built equally for entertaining and everyday living—combining natural materials, thoughtful functionality, architectural details, and refined craftsmanship throughout.'
+        ],
+        images: [
+          { src: 'images/gallery/smith/after-1.png', alt: 'smith — After' },
+          { src: 'images/gallery/smith/after-2.png', alt: 'smith — After' },
+          { src: 'images/gallery/smith/after-3.png', alt: 'smith — After' },
+          { src: 'images/gallery/smith/before-1.png', alt: 'smith — before' },
+          { src: 'images/gallery/smith/before-2.png', alt: 'smith — before' },
+        ]
+      }
+    };
+
+    function getParagraphs(project) {
+      return Array.isArray(project.description)
+      ? project.description
+      : [project.description];
+    }
+
+    function splitImages(project) {
+      if (project.before || project.after) {
+        return { before: project.before || [], after: project.after || project.images || [] };
+      }
+      const imgs = project.images || [];
+      return {
+        before: imgs.filter(i => /—\s*before\s*$/i.test(i.alt || '')),
+        after:  imgs.filter(i => !/—\s*before\s*$/i.test(i.alt || ''))
+      };
+    }
+
+    const ARROW = {
+      prev: '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"/></svg>',
+      next: '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"/></svg>'
+    };
+
+    function buildSlideshow(wrap, items, kind, projectTitle) {
+      const label = kind === 'before' ? 'Before' : 'After';
+      wrap.hidden = false;
+      wrap.classList.add('is-' + kind);
+
+      // No photos for this slot: Before shows a placeholder, After hides
+      if (!items.length) {
+        if (kind !== 'before') { wrap.hidden = true; return; }
+        wrap.innerHTML = `
+          <div class="pslide pslide-empty">
+            <div class="pslide-viewport">
+              <div class="pslide-placeholder">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg>
+                <p>Before photos coming soon</p>
+              </div>
+            </div>
+            <span class="pslide-tag">Before</span>
+        </div>`;
+        return;
+      }
+      wrap.innerHTML = `
+        <div class="pslide" role="group" aria-roledescription="carousel" aria-label="${label} photos — ${projectTitle}">
+          <div class="pslide-viewport" tabindex="0">
+            <div class="pslide-track"></div>
+          </div>
+          <span class="pslide-tag">${label}</span>
+          <button class="pslide-btn prev" type="button" aria-label="Previous ${label.toLowerCase()} photo">${ARROW.prev}</button>
+          <button class="pslide-btn next" type="button" aria-label="Next ${label.toLowerCase()} photo">${ARROW.next}</button>
+          <span class="pslide-count" aria-live="polite"></span>
+      </div>`;
+
+      const viewport = wrap.querySelector('.pslide-viewport');
+      const track    = wrap.querySelector('.pslide-track');
+      const count    = wrap.querySelector('.pslide-count');
+      const prevBtn  = wrap.querySelector('.prev');
+      const nextBtn  = wrap.querySelector('.next');
+      let idx = 0;
+
+      // Slides — images load on demand (current + neighbours) to stay light
+      items.forEach((item, n) => {
+        const fig = document.createElement('figure');
+        fig.className = 'pslide-slide';
+        const img = document.createElement('img');
+        img.alt = item.alt || '';
+        img.dataset.src = item.src;
+        img.decoding = 'async';
+        fig.appendChild(img);
+        fig.addEventListener('click', () => openLightbox(items, n));
+        track.appendChild(fig);
+      });
+      const imgEls = Array.from(track.querySelectorAll('img'));
+
+      function load(n) {
+        const el = imgEls[(n + items.length) % items.length];
+        if (el && !el.src) el.src = el.dataset.src;
+      }
+
+      function go(n) {
+        idx = (n + items.length) % items.length;
+        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        count.textContent = (idx + 1) + ' / ' + items.length;
+        load(idx); load(idx + 1); load(idx - 1);
+      }
+
+      if (items.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        count.style.display   = 'none';
+      }
+      prevBtn.addEventListener('click', () => go(idx - 1));
+      nextBtn.addEventListener('click', () => go(idx + 1));
+
+      // Keyboard (when the slideshow has focus)
+      viewport.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); go(idx - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); }
+      });
+
+      // Touch swipe
+      let startX = null;
+      viewport.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      viewport.addEventListener('touchend', e => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        startX = null;
+        if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      go(0);
+    }
+
+    // =============================================
+    // INIT — Read URL param & build page
+    // =============================================
+    (function () {
+      const params  = new URLSearchParams(window.location.search);
+      const key     = params.get('project') || '';
+      const project = PROJECTS[key];
+
+      if (!project) {
+        // Fallback: redirect to gallery
+        window.location.href = 'gallery.html';
+        return;
+      }
+
+      const paragraphs = getParagraphs(project);
+
+      // Page title + meta description
+      document.title = project.title + ' — Elwood Blues Construction';
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', paragraphs[0].slice(0, 155));
+
+      // Left column
+      document.getElementById('breadcrumbProject').textContent = project.title;
+      document.getElementById('projectTitle').innerHTML = project.titleHtml;
+
+      // Description — one <p> per paragraph
+      const descEl = document.getElementById('projectDesc');
+      descEl.innerHTML = '';
+      paragraphs.forEach(text => {
+        const p = document.createElement('p');
+        p.textContent = text;
+        descEl.appendChild(p);
+      });
+
+      // Right column — Before (top) and After (bottom) slideshows
+      const { before, after } = splitImages(project);
+      buildSlideshow(document.getElementById('beforeWrap'), before, 'before', project.title);
+      buildSlideshow(document.getElementById('afterWrap'),  after,  'after',  project.title);
+
+      // Trigger reveal animations
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }, 100);
+    })();
+
+    // =============================================
+    // LIGHTBOX
+    // =============================================
+    let currentIndex = 0;
+    let currentItems = [];
+
+    function openLightbox(items, index) {
+      currentItems = items;
+      currentIndex = index;
+      renderLightbox();
+      document.getElementById('site-lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('site-lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir) {
+      currentIndex = (currentIndex + dir + currentItems.length) % currentItems.length;
+      renderLightbox();
+    }
+
+    function renderLightbox() {
+      const item = currentItems[currentIndex];
+      if (!item) return;
+      document.getElementById('lb-img-wrap').innerHTML =
+    `<img src="${item.src}" alt="${item.alt || ''}" style="width:100%;height:auto;max-height:78vh;display:block;object-fit:contain;">`;
+    document.getElementById('lb-counter').textContent = (currentIndex + 1) + ' / ' + currentItems.length;
+    const hide = currentItems.length <= 1;
+    document.getElementById('lb-prev').style.display = hide ? 'none' : '';
+    document.getElementById('lb-next').style.display = hide ? 'none' : '';
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => navigateLightbox(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navigateLightbox(1));
+  document.getElementById('site-lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('site-lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  });
+</script>
+</body>
+</html>
