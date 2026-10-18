@@ -159,6 +159,21 @@
       .pslide-btn { width: 38px; height: 38px; }
       .pslide-btn.prev { left: 0.5rem; } .pslide-btn.next { right: 0.5rem; }
     }
+
+    /* Hover hint (desktop with a mouse only): tells visitors the photos open full size */
+    @media (min-width: 961px) and (hover: hover) and (pointer: fine) {
+      .pslide:not(.pslide-empty)::after {
+        content: 'Click here to view full image';
+        position: absolute; left: 50%; bottom: 1rem; z-index: 3;
+        transform: translate(-50%, 6px);
+        background: rgba(10,10,10,0.82); color: #fff;
+        font-size: 0.74rem; letter-spacing: 0.08em; white-space: nowrap;
+        padding: 0.5rem 1rem; border-radius: 2px;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .pslide:not(.pslide-empty):hover::after { opacity: 1; transform: translate(-50%, 0); }
+    }
     @media (prefers-reduced-motion: reduce) { .pslide-track { transition: none; } }
   </style>
   <link rel="stylesheet" href="css/responsive.css">
@@ -268,15 +283,6 @@
           Phoenix, AZ 85022<br>
           <a href="tel:6232626579" style="color:#000; text-decoration:none;">(623) 262-6579</a>
         </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="services.html">Home Remodeling</a></li>
-          <li><a href="services.html">Home Additions</a></li>
-          <li><a href="services.html">New Construction</a></li>
-          <li><a href="services.html">Renovations</a></li>
-        </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>

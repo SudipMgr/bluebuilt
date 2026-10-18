@@ -26,11 +26,12 @@ footer {
   line-height: 1.6;
 }
 .footer-col-title {
-  font-size: 0.72rem;
+  font-size: 14px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 1.25rem;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 .footer-links {
   list-style: none;

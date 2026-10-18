@@ -454,15 +454,6 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="services.html">Home Remodeling</a></li>
-          <li><a href="services.html">Home Additions</a></li>
-          <li><a href="services.html">New Construction</a></li>
-          <li><a href="services.html">Renovations</a></li>
-        </ul>
-      </div>
-      <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
           <li><a href="about.html">About Harris</a></li>
